@@ -1,0 +1,538 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\title{Misure}
+\author{Davide Calabrò}
+\begin{document}
+	\maketitle
+	\newpage
+	\pagenumbering{arabic}
+	
+	\section*{Definizioni}
+	\textbf{Misurare} significa \textbf{conoscere}\\
+	
+	\subsection*{Definizioni metrologiche}
+	\begin{itemize}
+		\item \textbf{Accuratezza}
+			\begin{itemize}
+				\item \textbf{Campione}: scarto tra la grandezza 		realizzata con il campione e la definizione dell'unità
+				\item \textbf{Misura}: vicinanza del valore di misura alla miglior stima possibile per il misurando
+				\item \textbf{Strumento}: stima dell'incertezza dello strumento o confronto con uno migliore
+			\end{itemize}
+		\item \textbf{Risoluzione}: capacità dello strumento/misura di risolvere stati (livelli) diversi del misurando
+		\item \textbf{Sensibilità}: rapporto tra la variazione della grandezza (segnale) di uscita e la corrispondente variazione della grandezza (segnale) d'ingresso
+		\item \textbf{Incertezza}: stima, eseguita secondo procedimenti convenzionali, del nostro livello di non conoscenza del misurando
+		\item \textbf{Ripetibilità}: capacità di ottenere, per uno stesso misurando, calori di lettura vicini tra loro nel breve periodo "nelle stesse condizioni" (stesso procedimento di misura, operatore, luogo, e condizioni ambientali)
+		\item \textbf{Riproducibilità}: capacità di ottenere, per uno stesso misurando, risultati vicini tra loro "in diverse e specificate condizioni di misura" (il tempo non conta)
+		\item \textbf{Riferibilità}: proprietà di una misura di essere messa in relazione con quella fornita da un campione riconosciuto
+		\item \textbf{Stabilità}: capacità di ottenere, per uno stesso misurando, valori di lettura vicini tra loro in un intervallo di tempo ben definito e chiaramente specificato (con stesso procedimento di misura, operatore, luogo, e condizioni ambientali)			
+	\end{itemize}
+
+	\subsection*{Altre definizioni}
+	\begin{itemize}
+		\item \textbf{Taratura}: consente di valutare l'incertezza di un campione/strumento rispetto a uno di qualità superiore e di ricavare correzioni
+		\item \textbf{Messa a punto}: insieme di operazioni volte a permettere a uno strumento di operare delle migliori condizioni di lavoro (regolazioni di offset e guadagno, parametri ambientali, etc.)
+	\end{itemize}
+
+	\subsection*{Unità logaritmiche}
+	\paragraph*{Definizione del Bel}
+	Il \textbf{Bel} esprime il rapporto di potenze in scala logaritmica utilizzando una base decimale
+	\begin{equation}
+		\left( \frac{P_2}{P_1} \right)_{(B)} = \log_{10} \left( \frac{P_2}{P_1} \right)
+	\end{equation}
+	Tuttavia questa scala risulta abbastanza grossolana dato che un 1 Bel rappresenta un fattore 10:1, di conseguenza useremo un suo sottomultiplo: il \textbf{deciBel}.
+	\begin{equation}
+	\left( \frac{P_2}{P_1} \right)_{(dB)} = 10\log_{10} \left( \frac{P_2}{P_1} \right)
+	\end{equation}
+	Inoltre, va aggiunto che i rapporti di ampiezze, ovvero quando tensioni e correnti sono misurate su uno stesso carico, si esprimono in decibel secondo la relazione
+	\begin{equation}
+		\left( \frac{V_2}{V_1} \right)_{(dB)} = 20\log_{10} \left( \frac{V_2}{V_1} \right)
+	\end{equation}
+	
+	\newpage
+	\section*{Incertezza}
+	\paragraph*{Definizione}
+	L'incertezza di misura è la stima della dispersione dei valori "attribuibili" al misurando
+	\subparagraph*{Variabilità delle misure}
+	Misure ripetute dello stesso paraemtro non forniscono lo stesso valore
+	\subparagraph*{Osservazione}
+	Il risultato di misura dunque non è mai un unico numero “deterministico” ma un intervallo di valori possibili entro il quale il misurando può trovarsi con una data probabilità.
+	\paragraph*{Tipologie di incertezza}
+	Esistono due tipi di incertezza
+	\begin{itemize}
+		\item \textbf{Cat. A}: stimata con metodi statistici su un insieme di misure ripetute
+		\item \textbf{Cat. B}: stimata in altro modo (conoscenze a priori o prorietà dello strumento)
+	\end{itemize}
+	\subsection*{Definizioni statistiche}
+	\paragraph*{Media campionaria}
+	\begin{equation}
+		\overline{x} = \overline{x}_k = \frac{1}{n} \sum_{k=1}^{n} x_k
+	\end{equation}
+	E quindi sappiamo che $\mu(x) =_s \overline{x}_k$
+	\paragraph*{Varianza campionaria}
+	\begin{equation}
+		\sigma^2(x) =_s s^2(x) = s^2(x_k) = \frac{1}{n-1}\sum_{k=1}^n(x_k-\overline{x})^2
+	\end{equation}
+	\subsection*{Incertezza di cat. A}
+	\begin{equation}
+		u_A(x) = s(\overline{x}) = \frac{s(x)}{\sqrt{n}}=\sqrt{\frac{1}{n(n-1)} \sum_{k=1}^n(x_k-\overline{x})^2}
+	\end{equation}
+	\subsection*{Incertezza di cat. B}
+	Si basa sulla definizione "a priori" di un opportuno intervallo di valori entor il quale si suppone debbano cadere i valori del misurando (con un data probabilità).\\
+	Dunque per stimare un incertezza di categoria B si svolgono 3 passi:
+	\begin{itemize}
+		\item definisco un intervallo di categoria B
+		\item associo una densità di probabilità (PDF)
+		\item su questa calcolo media, varianza e deviazione standard
+	\end{itemize}
+	Nel caso di intervallo rettangolare e PDF uniforme trovo che
+	\begin{equation}
+	\sigma(x) = \frac{\Delta x}{\sqrt{12}}
+	\end{equation}
+	Invece nel caso di intervallo triangolare
+	\begin{equation}
+	\sigma(x) = \frac{\Delta x}{\sqrt{24}}
+	\end{equation}
+	\paragraph*{Metodi alternativi per il calcolo dell'incertezza di cat. B}
+	Si può anche calcolare partendo da un'incertezza estesa $U(y)$ e dato un fattore di copertura $k$ ricavare $u(y)$ attraverso la formula:
+	\begin{equation}
+		u_B(x) = \frac{U_B(x)}{k}
+	\end{equation}
+	\subsection*{Incertezza relativa}
+	Parleremo in \textbf{incertezza relativa} quando normalizziamo il valore di incertezza tipo al valore di misura
+	\begin{equation}
+		u_r(y) = \frac{u(y)}{\overline{y}}
+	\end{equation}
+	L'inc. rel. indica, indipendentemente dal valore e tipo del misurando, il grado di conoscenza che abbiamo raggiunto sul valore di misura
+	\subsection*{Incertezza estesa}
+	Quando si vuole definire un intervallo di valori, attorno al valore di misura $y = \overline{y}$, "all'interno del quale di ritiene che il misurando debba cadere con un certo livello di confidenza (probabilità P)", si utilizza l'\textbf{incertezza estesa}
+	\begin{equation}
+		U(y) = k \cdot u(y)
+	\end{equation}
+	Con $k$ fattore di copertura
+	\subsection*{Incertezza di cat. B}
+	Si basa sulla definizione "a priori" di un opportuno intervallo di valori entor il quale si suppone debbano cadere i valori del misurando (con un data probabilità).\\
+	Dunque per stimare un incertezza di categoria B si svolgono 3 passi:
+	\begin{itemize}
+		\item definisco un intervallo di categoria B
+		\item associo una densità di probabilità (PDF)
+		\item su questa calcolo media, varianza e deviazione standard
+	\end{itemize}
+	Nel caso di intervallo rettangolare e PDF uniforme trovo che
+	\begin{equation}
+	\sigma(x) = \frac{\Delta x}{\sqrt{12}}
+	\end{equation}
+	Invece nel caso di intervallo triangolare
+	\begin{equation}
+	\sigma(x) = \frac{\Delta x}{\sqrt{24}}
+	\end{equation}
+	\paragraph*{Metodi alternativi per il calcolo dell'incertezza di cat. B}
+	Si può anche calcolare partendo da un'incertezza estesa $U(y)$ e dato un fattore di copertura $k$ ricavare $u(y)$ attraverso la formula:
+	\begin{equation}
+	u_B(x) = \frac{U_B(x)}{k}
+	\end{equation}
+	\subsection*{Misure indirette}
+	Quando vogliamo misurare una grandezza che deriva dalla combinazione algebrica (sotto forma di funzione) di altre grandezze, dobbiamo tenere conto che l'incertezza della misura sarà un'opportuna combinazione delle incertezze delle grandezze di partenza.\\
+	Attraverso opportuni calcoli si arriva a dimostrare che l'incertezza composta si ottiene come (espressione con le covarianze):
+	\begin{equation}
+		u^2_c(y) = \sum_{i=1}^{N} \left( \frac{\partial f}{\partial x_i} \right) u^2(x_i) + 2 \sum_{i=1}^{N-1}\sum_{j=i+1}^{N} \left( \frac{\partial f}{\partial x_i} \right) \left( \frac{\partial f}{\partial x_j} \right) u(x_i, x_y)
+	\end{equation}
+	\paragraph*{Variabili statisticamente indipendenti}
+	Nel caso particolare di variabili statisticamente indipendenti tutti i termini di covarianza e i coefficienti di correlazione sono nulli e quindi:
+	\begin{equation}
+		u_c(y) = \sqrt{\sum_{i=1}^N \left( \frac{\partial f}{\partial x_i} \right) u^2(x_i)}
+	\end{equation}
+	Inoltre, se la relazione funzionale è espressa da prodotti e rapporti semplici, si ottiene:
+	\begin{equation}
+		u^2_{r,C}(y) = \sum_{i=1}^N n^2_i \cdot u^2_r(x_i)
+	\end{equation}
+	\subsection*{Compatibilità tra due misure}
+	Date due misure vogliamo sapere se sono compatibili o se sono troppo "distanti" e quindi non compatibili.
+	In generale, date due misure $M_1$ ed $M_2$ statisticamente indipendenti, il fattore di copertura, e quindi la compatibilità, si ricava dalla formula:
+	\begin{equation}
+		\left|P_1-P_2\right| \leq k \sqrt{u^2(P_1) + u^2(P_2)}
+	\end{equation}
+	Se il fattore di copertura $k$ risulta $\leq 3$ le misure sono compatibili. Il fattore di copertura rappresenta quanto le misure sono compatibili, nel senso che le funzioni gaussiane che descrivono le rispettive misure sono più o meno sovrapposte.\\ Un fattore $k = 1$ indica che c'è perfetta compatibilità, ovvero che le gaussiane sono sovrapposte.
+	\subsection*{Media pesata tra misure compatibili}
+	Nel caso di N risultati di misura compatibili, indipendenti e normalmente distribuiti, la miglior stima della misura è
+	\begin{equation}
+		x = \overline{x}_{MP} = \dfrac{\sum\limits_{i=1}^{N} w_i x_i}
+									{\sum\limits_{i=1}^{N} w_i} 
+			= 
+			\dfrac{\sum\limits_{i=1}^{N} \dfrac{x_i}{u^2(x_i)}}{\sum\limits_{i=1}^{N} \dfrac{1}{u^2(x_i)}}
+	\end{equation}
+	Dove i pesi $w_i$ sono il reciproco delle varianze.\\
+	Invece l'incertezza della media pesata è:
+	\begin{equation}
+		u^2(\overline{x}_{MP}) = \dfrac{1}{\sum\limits_{i=1}^{N} w_i} = \dfrac{1}{\sum\limits_{i=1}^{N} \dfrac{1}{u^2(x_i)}}
+	\end{equation}
+	
+	\newpage
+	\section*{Rappresentazione grafica}
+	\subsection*{Regressione}
+	Un diagramma sperimentale , ottenuto da risultati di misura, spesso mostra una dipendenza $y = f(x)$ che appare ragionevolemente approssimabile con una funzione nota. In poche parole dati dei valori di $x$ e i corrispettivi di $y$ vogliamo trovare la funzione che più di avvicina a questi punti.
+	\subsubsection*{Regressione lineare}
+	Nel caso più semplice della regressione lineare, dobbiamo ricavare una retta da quei punti, dunque dobbiamo trovare $m$ e $q$ della retta $y = mx + q$
+	\begin{equation}
+		m = \frac{n\sum x_i y_i - \sum x_i \sum y_i}{n\sum x_i^2 - \left(\sum x_i\right)^2}
+	\end{equation}
+	\begin{equation}
+		b = \frac{\sum x_i^2\sum y_i - \sum x_i \sum x_i y_i}{n\sum x_i^2 - \left(\sum x_i\right)^2} =
+		\frac{\sum y_i - m\sum x_i}{n} = \overline{y} - m\overline{x}
+	\end{equation}
+	
+	\newpage
+	\section*{Voltmetro e convertitore A/D}
+	\paragraph*{Definizione}
+	E' uno strumento che riceve in ingresso una tensione analogica e la "digitalizza" (discretizzando prima nel dominio del tempo e poi nel dominio dell'ampiezza)
+	\paragraph*{Definizione(quantizzazione in ampiezza)}
+	La \textbf{quantizzazione in ampiezza} avviene suddividendo la \textbf{dinamica D} di misura in \textbf{N sottointervalli (livelli)} di larghezza costante $\Delta V = D/N$ (risoluzione). 
+	\subsection*{Campionamento di un segnale}
+	Per poter ricostruire un segnale con banda limitata, è necessaria una frequenza di campionamento.
+	\begin{equation}
+		f_c > 2B \text{    con B banda massima del segnale}
+	\end{equation}
+	Questo per evitare fenomeni di \textbf{aliasing}, che letteralmente è traducibile in "sovrapposizione", che possono far perdere informazione utile.
+	\subsection*{Tipi di voltmetri}
+	Esistono due tipi voltmetri:
+	\begin{itemize}
+		\item \textbf{Differenziali}: $V_x - kV_{ref} \cong 0$
+		\item \textbf{Integratori}: mediano $V_x$
+	\end{itemize}
+	\subsection*{Risoluzione}
+	Esistono due tipi di risoluzione
+	\begin{itemize}
+		\item \textbf{Dimensionale ($\Delta V$)}\\
+			\begin{equation}
+				\Delta V = \frac{D}{N} = \frac{\text{dinamica}}{\text{n. livelli}}
+			\end{equation}
+		\item \textbf{Adimensionale ($\delta$)}\\
+			\begin{equation}
+			\delta = \frac{\Delta V}{D} = \frac{1}{N_{max}}
+			\end{equation}
+	\end{itemize}
+	\subsection*{Voltmetri differenziali}
+	\paragraph*{Definizione}
+	Effettuano la misura di una tensione incognita \textbf{$V_x$} mediante il confronto con una tensione di riferimento \textbf{$V_r$}.\\
+	\paragraph*{Funzionamento generale}
+	Viene comparata la $V_x$ con una $V_r$ che viene fatta variare. Quando il comparatore commuta viene presa $V^*_r$ che viene quindi inviata a video.
+	\subsection*{Voltmetro a rampa analogica}
+	Viene creata una rampa di tensione con estremi $(-V_M, +V_M)$, ovvero due tensioni prestabilite. Intanto vi è un contatore che tiene conto dei $T_{clock}$ che passano. Quando la $V_r = V_x$, scatta il comparatore. In questo modo il convertitore opera secondo una conversione \textbf{tensione/tempo} e il modulo della tensione $V_x$ viene misurata contando un certo numero di periodi di clock $T_c$ in un intervallo di tempo $\Delta T_G$
+	\begin{equation}
+		|V_x|= \dfrac{\Delta T_G}{T_{rampa}/2}V_M
+	\end{equation}
+	Vi è inoltre un comparatore di 0, che in base a quale comparatore scatta prima (se quello che ha trovato $V_r = V_x$ oppure quello dello 0) indica qual è il segno della tensione.\\
+	L'incertezza è data inoltre da:
+	\begin{equation}
+		\dfrac{\text{1 conteggio}}{\sqrt{12}}
+	\end{equation}
+	Il tempo di misura è
+	\begin{equation}
+		T_{mis} = T_{rampa} = \frac{1}{f_{rampa}}
+	\end{equation}
+	La risoluzione adimensionale è
+	\begin{equation}
+		\delta = \frac{1}{N} = \frac{1}{2N_{c,max}} = \frac{\Delta V}{D} = \frac{T_c}{T_{rampa}} = \frac{f_{rampa}}{f_c}
+	\end{equation}
+	$N_{c,max}$ è il numero massimo di conteggio su dinamica unipolare. Inoltre da queste relazioni possiamo calcolare $T_{rampa}$ come
+	\begin{equation}
+		T_{rampa} = N \cdot T_c
+	\end{equation}
+	Per quanto riguarda le cifre abbiamo:
+	\begin{equation}
+		m = \log_{10}(N) = \log_{10}\left( \frac{f_c}{f_{rampa}} \right)
+	\end{equation}
+	Stessa cosa se vogliamo ottenere il numero di bit, solamente che il logaritmo sarà in base 2.
+	\subsection*{Voltmetro - convertitore Flash}
+	E' il più veloce convertitore disponibile, può raggiungere velocità fino a 40 GSa/s. Tuttavia quando si lavoroa a così elevate velocità di campionamento bisogna tenere conto del rumore e dell'alta banda del segnale, e quindi dei bit equivalenti. Per tale motivo non conviene aumentare il numero di bit del convertitore che solitamente si attesta tra gli 8-10 bit.\\
+	Il funzionamento è abbastanza semplice. Il voltmetro contiene $2^n - 1$ comparatori e $2^n$ resistori in cascata tutti uguali. Fanno eccezione la prima e ultima resistenza, che sono rispettivamente $\frac{3}{2}R$ e $\frac{R}{2}$ per prevenire e/o correggere fenomeni di offset. Ogni comparatore ha in ingresso una $V_{REF}$ di riferimento uguale per tutti e la tensione $V_x$ pesata sulla resistenza. Il comparatore resituisce 0 o 1 in base a se la tensione $V_x$ è minore o maggiore rispetto a quella di riferimento. Gli 0 e 1 restiuiti comporranno il numero binario a cui corrisponderà la misura di tensione. Ovviamente tutti i comparatori lavorano in parallelo.
+	\paragraph*{Risoluzione}
+	\begin{equation}
+		\Delta V = \frac{V_{max}}{2^n} \text{,   } \delta = \frac{1}{2^n}
+	\end{equation}
+	\paragraph*{Dinamica bipolare}
+	Nel caso in cui avessimo una dinamica bipolare la struttura di conversione presenterà una simmetria, in modo da dividere la dinamica in $N/2$ livelli positivi ed altrettanti livelli negativi.
+	\subsection*{Voltmetro ad approssimazioni successive}
+	Questo tipo di voltmetro utilizza il metodo di \textbf{bisezione}. In questo modo avremo solo $n$ confronti da cui si ottiene una risoluzione di $\delta = \frac{1}{N}$.
+	\paragraph*{Metodo di bisezione}
+	Si provano tutti i bit (si pone tentativamente il bit a 1) a partire dal più significativo. Ad ogni cnfronto di $V_{appr}$ con $V_x$ si decide se mantenere il bit a 1 o riportarlo a 0.
+	\begin{equation}
+		V_{D/A} = \frac{V_{FS}}{2}\left[ b_{n-1}2^{n-1} + ... + b_1 2 + b_0 \right]
+	\end{equation}
+	\paragraph*{Tempo di misura}
+	Per ogni confronto si ha una durata di $mT_c$ con $m$ compreso tra 2 e 5. Quindi:
+	\begin{equation}
+		T_{mis} = n(mT_c) = nT_{confr}
+	\end{equation}
+	\subsection*{Voltmetri a integrazione}
+	I voltmetri a integrazione misura un tensione in ingresso secondo la relazione integrale
+	\begin{equation}
+		V_m = \frac{1}{T_1} \int_{0}^{T_I} V(t) dt
+	\end{equation}
+	GLi strumenti a integrazione hanno il vantaggio di poter ridurre il rumore, e in certi casi eliminarlo completamente, rispetto ad un segnale in ingresso. Questa operazione viene chiamata \textbf{reiezione}.\\
+	Il concetto matematico su cui si basa è molto semplice: integrando un segnale periodico, come una sinusoide, su un intervallo multiplo del periodo, avremo che l'integrale della funzione sarà 0.
+	Dunque conoscendo in partenza il disturbo (frequenza, periodo, ecc.), possiamo trovare il $T$ di misura necessario a eliminare o ridurre il disturbo.
+	\paragraph*{Caso pratico - senza fase $\varphi$}
+	Supponiamo che all'ingresso sia presente un disturbo sinuosoidale:
+	\begin{equation}
+		V_d(t) = V_{d,0}\cos(2\pi f_d t)
+	\end{equation}
+	In uscita avremo:
+	\begin{equation}
+		V_{d,m}(T_I) = \frac{V_{d,0}}{T_1} \int_{0}^{T_I} \cos(2\pi f_d t) dt = \frac{V_{d,0}}{T_1} \frac{\sin(2\pi f_d t)}{2\pi f_d} = \frac{\sin(x_p)}{x_p} V_{d,0}
+	\end{equation}
+	Dunque il disturbo misurato descresce come $sinc(x_p)$ al crescere di $x_p \approx f_d T_I$.
+	\subparagraph*{Eliminazione completa del disturbo}
+	In caso in cui conoscessimo bene la frequenza del disturbo potremmo lavorare con $T_d = \frac{1}{f_c}$ e quindi avere un tempo di integrazione $T_I = mT_d$. In questo modo avremmo la completa eliminazione del disturbo.
+	\paragraph*{Reiezione}
+	\begin{equation}
+		r = \left| \frac{V_{d,0}}{V_{d,m}} \right| = \left| \frac{x}{\sin(x)} \right|
+	\end{equation}
+	La reiezione cresce al crescere di $x$ e dunque di $f_d$ e $T_I$ e inoltre $r \to \infty$ se $f_d \cdot T_I = m$.
+	\subparagraph*{Reiezione in potenza}
+	Definiamo $R$ come reiezione in potenza, nel seguente modo
+	\begin{equation}
+		R = r^2 = \frac{x^2}{\sin^2(x)}
+	\end{equation}
+	che in scala logaritmica diventa:
+	\begin{equation}
+		R_{dB} = 10\log_{10}R = 20\log_{10} \left|\frac{x}{\sin(x)}\right|
+	\end{equation}
+	\subsection*{Voltmetro a doppia rampa}
+	Il voltmetro a doppia rampa ha un funzionamento simile a quello a rampa analogica. Innanzitutto viene messa in ingresso una tensione incognita $V_x$ che, per un tempo fisso definito a priori (solitamente settato per avere reiezione massima), carica un condensatore. Dopo di chè avremo una seconda rampa che grazie ad una $V_r$ di riferimento, va a scaricare il condensatore fino allo 0. Il tempo di discesa della rampa, e di conseguenza il numero di conteggi necessari a compierer quest'operazione, daranno il valore di tensione finale.
+	\paragraph*{Tempi e risultati}
+	Il tempo di salita $T_u$ è pari a $T_u = N_uT_c$ ed è costante.
+	Il tempo di misura $T_{mis}$ sarà quindi uguale a $T_{mis} = T_u + T_d$.\\
+	Per quanto riguarda il risultato della misura avremo che:
+	\begin{equation}
+		V_x = -V_r\frac{T_d}{T_u}
+	\end{equation}
+	La $V_r$ e la $V_x$ devono essere ovviamente di segno opposto, altrimenti non si riuscirebbe a scaricare il condensatore.
+	\paragraph*{Incertezza}
+	Ovviamente l'incertezza della $V_r$ si trasferisce 1:1 sulla $V_x$ misurata.\\
+	Inoltre, come nel caso del voltmetro a rampa analogica, avremo un'incertezza che sarà:
+	\begin{equation}
+		u_q(V_x) = \frac{\Delta V}{\sqrt{12}}
+	\end{equation}
+	Mentre l'incertezza relativa su $N_d$, ovvero il numero di conteggi di discesa sarà:
+	\begin{equation}
+		u_r(N_d) = \frac{1/\sqrt{12}}{N_d}
+	\end{equation}
+	Da qui, possiamo calcolare l'incertezza relativa di $V_x$ utlizzando le regole del calcolo dell'incertezza di misure indirette:
+	\begin{equation}
+		u^2_r(V_x) = u^2_r(V_r) + u^2_r(N_d)
+	\end{equation}
+	\subsection*{Bit equivalenti}
+	A causa dei disturbi e della quantizzazione, il numero dei bit dei nostri strumenti non è quella che ci viene fornita dal produttore. In realtà abbiamo un certo numero di bit equivalenti.
+	Sapendo che:
+	\begin{equation}
+		\sigma_s^2 = \frac{D^2}{12}
+	\end{equation}
+	e che abbiamo una certa varianza di quantizzazione:
+	\begin{equation}
+		\sigma^2_q = \frac{Q^2}{12} = \frac{1}{12} \left( \frac{D}{2^n} \right)^2 = \frac{\sigma_s^2}{2^{2n}}
+	\end{equation}
+	Partendo da queste uguaglianze, nel \textbf{caso ideale} abbiamo che il numero di bit equivalenti $n$ è:
+	\begin{equation}
+		n = \frac{1}{2}\log_{2}\left(\frac{\sigma_s^2}{\sigma_q^2}\right)
+	\end{equation}
+	Nel \textbf{caso reale}, tuttavia, non è corretto ricondurre la varianza del convertitore $\sigma_c^2$ alla sola varianza di quantizzazione $\sigma_q^2$. In un caso reale la $\sigma_c^2$ è composta da:
+	\begin{equation}
+		\sigma^2_c = \sigma^2_q + \sigma^2_{n,A/D} + \sigma^2_{n,ext} > \sigma^2_q
+	\end{equation}
+	Di conseguenza, attraverso semplici calcoli si arriva a definite il numero di bit equivalenti come:
+	\begin{equation}
+		n_e \equiv \frac{1}{2}\log_{2}\left(\frac{\sigma^2_s}{\sigma^2_c}\right) = n - \frac{1}{2}\log_{2}\left(1 + \frac{\sigma^2_{n,A/D} + \sigma^2_{n,ext}}{\sigma^2_q}\right) < n
+	\end{equation}
+	\subsection*{Settaggio del guadagno}
+	Può capitare il caso in cui volessimo misurare una tensione molto piccola. Ovviamente useremmo solamente pochi dei livelli del nostro strumento, quindi possiamo amplificare il segnale in entrata per usare al meglio la dinamica del nostro ADC.
+	\begin{equation}
+		G = \frac{D_{ADC}}{D_{segnale}}
+	\end{equation}
+	Di conseguenza, anche la risoluzione muta leggermente la sia formula, anche se questa può essere considerata come una formula più generale della precedente.
+	\begin{equation}
+		\Delta V = \frac{D_{ADC}}{G \times 2^n}
+	\end{equation}
+	
+	\newpage
+	\section*{L'oscilloscopio (oscillografo)}
+	\subsection*{Descrizione dell'oscilloscopio, con riferimento a quello analogico}
+	E' uno strumento di misura che consente la visualizzazione grafica dell'evoluzione temporale di un segnale di tensione in funzione del tempo.
+	\paragraph*{Sincronismo}
+	Per decidere quale evento, legato al segnale, deve far scattare la visualizzazione possiamo utilizzare il trigger. Quest'ultimo, che letteralmente significa "interruttore", scatta quando il segnale attrversa un determinato livello con una certa pendenza (\textit{slope})
+	\paragraph*{Base dei tempi}
+	Una volta settata la sincronizzazione voluta, dobbiamo agire sulla base dei tempi. In questo decidiamo su quale intervallo di tempo vogliamo vedere il segnale. Per fare ciò si usano metodi di integrazione e circuiti come \textbf{l'integratore di Miller}. Quest'ultimo crea delle rampe di tensione, la cui durata di salita si può regolare "giocando" con il valori del circuito RC legato. Durante la salita il pennello del tubo catodico disegna il segnale, mentre durante la discesa della rampa, molto più veloce della salita, un comando regola a zero l'intensità della traccia luminosa del pennello elettronico.
+	\paragraph*{Visualizzazione di più segnali sull'oscilloscopio}
+	Se vogliamo visualizzare due segnali $S_1$ e $S_2$ sullo stesso oscilloscopio dobbiamo commutare da un segnale all'altro. Da qui nascono due metodi diversi di visualizzazione:
+	\begin{itemize}
+		\item \textbf{Chopped}: i commutatori lavorano molto velocemente e visualizzano un po' di $S_1$ e un po' di $S_2$. Lavorando molto velocemente, il risultato è di avere molti punti per ciascun segnale. Infine, per interpolazione, l'occhio umano vedrà i due segnali come linee completamente unite. Il vantaggio di questo sistema è di avere i due segnali sullo stesso asse temporale, tuttavia può essere applicato a segnali relativamente lenti.
+		\item \textbf{Alternated}: con questo metodo si disegna prima tutto un segnale e poi tutto l'altro. Ha il vantaggio di funzionare per segnali molto veloci, ma di contro non avremo i due segnali visualizzati sullo stesso asse temporale.
+	\end{itemize}
+	\subsection*{Impedenza e sonde d'ingresso}
+	\paragraph*{Impedenza d'ingresso}
+	All'ingresso dell'oscilloscopio abbiamo l'impedenza del buffer, che però è capacitiva. Anche le celle a $\pi$ hanno una componente capacitiva di modo da non fare variare l'impedenza d'ingresso quando vengono inserite/disinserite.
+	\paragraph*{Sonde d'ingresso}
+	Data l'impedenza d'ingresso elevata, il segnale viene prelevato con un cavo schermato così da ridurre le interferenze esterne. A causa della capacità del cavo, l'impedenza d'ingresso varia con la frequenza e con le proprietà fisiche del cavo. Se il cavo di collegamento fa parte della sonda è possibile compensare l'impedenza complessiva d'ingresso, in modo che l'attenuazione sia puramente resistiva.
+	\paragraph*{Il duty-cicle o ciclo di lavoro}
+	Il duty-cicle indica quando tempo un segnale rimane in stato 1 o "alto" rispetto al periodo T.
+	\begin{equation}
+		d = \frac{\tau}{T}
+	\end{equation}
+	Per esempio, se ho un segnale a un 1 Hz, avrò un periodo $T$ = 1s. Se però il duty-cicle $= 0,1\% $ so che quel segnale rimarrà in stato di alto per un millesimo del suo periodo $T$.
+	\subsection*{L'oscilloscopio digitale}
+	A differenza dell'oscilloscopio analogico, qui abbiamo una prima fase, che deve essere molto veloce, di campionamento, conversione del segnale e memorizzazione della sequenza e una seconda parte, che invece può anche essere più lenta (e di norma lo è), dove elaboriamo e visualizziamo il segnale acquisito in precedenza.
+	\begin{itemize}
+		\item\textbf{Condizionamento analogico}: campionamento e conversione in sequenza numerica del segnale di misura
+		\item \textbf{Memorizzazione} dei campioni
+		\item \textbf{Elaborazione numerica} (ricostruzione dell'andamento del segnale nel tempo)
+		\item \textbf{Visualizzazione} sullo schermo: oscillogramma del segnale
+	\end{itemize}
+	\subsubsection*{Differenze e somiglianze rispetto all'OA}
+	\begin{itemize}
+		\item \textbf{Disaccoppiamento temporale}: l'oscillogramma non è più in tempo reale con il segnale
+		\item Visualizzazione mediante display raster
+		\item Memoria RAM video
+		\item Dispositivi I/O per il trasferimento dei dati
+	\end{itemize}
+	Per quanto riguarda invece la sezione analogica di un DSO ricalca, in linea di principio, quella di un oscilloscopio analogico
+	\paragraph*{Tipi di configurazioni del DSO}
+	\begin{itemize}
+		\item \textbf{Campionamento e conversione a multiconvertitore:} ogni convertitore esegue il campionamento nel suo istante di tempo predefinito e la scrive nella sua memoria dedicata
+		\item \textbf{Singolo convertitore A/D con più campionatori ritardati:} abbiamo un singolo convertitore che riceve in ingresso da un multiplexer un segnale da convertire. A sua volta il multiplexer gestisce le informazioni derivanti dai campionatori e decide quale inviare all'ADC.
+	\end{itemize}
+	\subsubsection*{Campionamento}
+	Per rispettare il Th. di Shannon, bisogna fare in modo che la \textbf{frequenza di campionamento} sia più elevata del doppio della massima frequenza del segnale.\\ Inoltre, affinchè l'occhio possa percepire distintamente la forma d'onda, il numero di campioni acquisiti su ciascun periodo deve essere sufficientementeelevato da non generare ambiguità di percezione. Con i segnali sinusoidali ci si attesta solitamente ai 25 punti per periodo.\\
+	Da qui, definiamo le tre modalità di campionamento:
+	\begin{itemize}
+		\item \textbf{Campionamento in tempo reale}: i campioni sono prelevati direttamente nel periodo/tempo del segnale da visualizzare
+		\item \textbf{Campionamento in tempo equivalente di tipo sequenziale}: i campioni sono presi su più periodi della forma d'onda e successivamente riordinati e visualizzati. In questa modalità, però, il convertitore non va al massimo della sua velocità, bensì prende un campione secondo degli impulsi. Questi impulsi sono riconducibili ad una funzione del tipo: $I(n) = T + n\tau$ e sono riferiti ad un certo evento. Per fare ciò si utilizza il trigger, allo stesso modo in cui è usato negli oscilloscopi analogici
+		\item \textbf{Campionamento in tempo equivalente di tipo casuale}: il procedimento è del tutto simile a quello di tipo sequenziale, tuttavia in questo caso il convertitore A/D viene usato alla massima velocità. In questo caso l'intervallo di tempo tra ciascun campione deve essere misurato in modo da poter riordinare correttamente la sequenza campionata sul display.
+	\end{itemize}
+	Ovviamente nel campionamento in tempo equivalente possiamo non rispettare il Th. di Shannon, e campionare comunque segnali periodici ad alta frequenza. E' anche vero che i campioni che otteniamo non si riferiscono allo stesso periodo e che quindi la sinusoide a schermo verrà creata con punti che non sono dello stesso periodo.
+	\paragraph*{Modalità avanzate del DSO}
+	Una funzione avanzata rispetto all'OA è quella di \textit{Pre-trigger}, ovvero possiamo visualizzare a schermo l'andamento del segnale anche prima dell'evento di trigger. Ciò viene fatto attraverso l'utilizzo di buffer circolari.
+	\subsubsection*{Risoluzione e parametri del DSO}
+	\paragraph*{Risoluzione verticale}
+	Si calcola come nel caso dell'OA come $\frac{D}{N}$
+	\paragraph*{Coefficiente di deflessione}
+	A differenza dell'OA, il DSO permette di impostare valori fini sia del coefficiente di deflessione, sia dell'offset e quindi avere un minor effetto di quantizzazione.
+	\paragraph*{Risoluzione orizzontale}
+	La risoluzione orizzontale varia con il tipo di campionamento selezionato:
+	\begin{itemize}
+		\item In modalità \textit{single shot} la risoluzione è uguale al tempo minimo $T_c$ dell'ADC, che dipende dal coefficiente di tempo scelto per la taratura dell'asse orizzontale
+		\item In modalità \textit{t. equivalente sequenziale} la risoluzione limitata dalla "precisione" con cui viene controlalto il ritardo $\tau$ tra i campioni equivalenti associati
+		\item In modalità \textit{t. equivalente sequenziale} la risoluzione è limitata dall'accuratezza e dalla risoluzione della misura dell'intervallo di tempo tra l'istante di campionamento e l'evento di trigger
+	\end{itemize}
+
+	\newpage
+	\section*{Analizzatori di spettro}
+	Gli analizzatori di spettro, come di deduce dal nome, analizzano un segnale e ne mostrano lo spettro in frequenza.
+	\subsection*{AS a banco di filtri}
+	In questo AS, un segnale (periodico o non) viene filtrato da $n$ filtri, ognuno dei quali si occupa di "guardare" un range di frequenze.\\
+	Per questo AS ci sono due versioni:
+	\begin{itemize}
+		\item Con più rilevatori: in questo caso ogni filtro ha un suo rilevatore. Tuttavia, con questo metodo, introduciamo degli errori creati dalla possibile diversità tra i vari rilevatori. In questo caso l'analisi è parallela
+		\item A singolo rilevatore: in questo caso abbiamo un solo rilevatore che viene usato, attraverso un commutatore, in maniera sequenziale dai filtri. In questo caso l'analisi è sequenziale
+	\end{itemize}
+	\subsection*{AS a filtro accordato}
+	In questo AS abbiamo un solo filtro che si muove lungo lo spettro, osservando una frequenza alla volta.\\
+	Notiamo che il passo di quantizzazione $Q$ è:
+	\begin{equation}
+		Q = \frac{f}{\Delta f} \approx \text{COSTANTE per un dato filtro}
+	\end{equation}
+	Tuttavia qui abbiamo un problema: la RBW (Resolution BandWidth) varia al variare di $f$ e lo si può notare dalla formula precedente.
+	\subsection*{AS a eterodina}
+	Per risolvere il problema della variazione della RBW, è stato creato l'AS a eterodina. In questo caso la $\Delta f =$ RBW = \textit{cost.}.\\
+	In questo caso però è il segnale a essere modulato e traslato facendolo passare attraverso il filtro.
+	\subsection*{Proprietà dell'AS}
+	Definiamo con $N$ i punti equivalenti
+	\begin{equation}
+		N = \frac{\Delta f_{span}}{RBW}
+	\end{equation}
+	Definiamo ora il Measurement Time ($MT$). Al diminuire della RBW cresce la risoluzione, ma anche il tempo di misura, che è:
+	\begin{equation}
+		MT \approx \tau \approx k\frac{1}{RBW}
+	\end{equation}
+	Possiamo inoltre scrivere il Sweep Time ($ST$) come:
+	\begin{equation}
+		ST = N \times MT =  k\frac{\Delta f_{span}}{(RBW)^2}
+	\end{equation}
+	E da quest'ulima ricavare la Sweep Speed ($SS$):
+	\begin{equation}
+		SS = \frac{\Delta f_{span}}{ST} \approx \frac{RBW}{MT} \approx \frac{(RBW)^2}{k}
+ 	\end{equation}
+	\subsection*{Rumore di fondo dell'AS}
+	Nel caso in cui volessimo calcolare la sensibilità e quindi il fondo di rumore di un AS, dovremmo calcolare innanzitutto il minimo segnale rilevabile.\\
+	Definiamo $p_T = kT$ come densità spettrale al riferimento di 290K.
+	Da qui possiamo calcolare $P_T$ come rumore termico in una banda $B$.
+	\begin{equation}
+		P_T = p_T \times RBW = kT \times RBW
+	\end{equation}
+	Se inoltre l'AS ha una figura di rumore $NF \neq 0$, allora possiamo calcolare il fondo di rumore.
+	\begin{equation}
+		P_{noise} = P_s \cdot NF = P_{s (dBm)} + NF_{(dBm)}
+	\end{equation}
+	Dove NF sta per \textit{Noise Figure} e rappresenta quanto il rumore complessivo è superiore al solo rumore termico valutato ai 290K.
+	
+	\newpage
+	\section*{Esercizi}
+	\subsection*{Consigli pratici}
+	\paragraph*{Attenuazione con tensioni e correnti}
+	Quando viene fornita una tensione e un'attenuazione in dB, dobbiamo ricordarci che il valore in dB di una tensione è ottenuto con un logaritmo con un coefficiente 20 e non 10. All'atto pratico vuol dire che se dobbiamo attenuare una tensione e vogliamo riportare il valore in lineare, dobbiamo ricordarci che l'attenuazione (o l'amplificazione) che ci viene fornita deve essere fornita deve essere divisa per 2 (in dB) oppure bisogna farne la radice quadrata una volta portata in lineare. Lo stesso discorso vale se dobbiamo gestire dei guadagni di tensione/corrente espressi in dB.
+	\subparagraph*{Esempio}
+	Abbiamo una tensione $T = 100V$ e un'attenuazione di 60 dB. Portiamo l'attenuazione a 30dB e poi la portiamo in lineari (1/1000).
+	\paragraph*{Rateo di confidenza}
+	Quando viene espressa un'incertezza espressa come $U(y)$, questa misura sappiamo che va riferita a vari fattori di copertura. Questo può venirci esposto in maniera esplicita ($k = 1,2,3$), oppure attraverso una percentuale di confidenza, rispettivamente $65\%, 95\%, 99,7\%$.
+	\paragraph*{PDF triangolare}
+	Nel caso in cui ci venga data una PDF triangolare, dobbiamo ricordarci che la sua incertezza si calcola come:
+	\begin{equation}
+		u(m) = \frac{\Delta m}{\sqrt{24}}
+	\end{equation}
+	\subparagraph*{Esempio}
+	Ci viene data una misura di massa $m$ di $20g$ con semi-larghezza $1g$. In questo caso sappiamo che $\Delta m = 2g$, ovvero la larghezza piena. L'incertezza di $m$ sarà quindi:
+	\begin{equation}
+		\Delta m = \frac{2g}{\sqrt{24}} = 0,41g
+	\end{equation} 
+	\paragraph*{Potenze visualizzate da un AS in presenza di rumore di fondo}
+	Nel caso in cui abbiamo delle armoniche di cui conosciamo la potenza e vogliamo visualizzare queste frequenze su un AS, dobbiamo tenere conto del rumore di fondo, sommando quest'ultimo alle armoniche.
+	\subparagraph*{Esempio}
+	Abbiamo $P_1 = -84$dBm e $P_1 = -110$dBm. Sapendo che l'AS ha un $NF = 20$dB, calcoliamo prima il rumore di fondo e poi le potenze visualizzate.\\
+	Calcoliamo la densità spettrale di fondo:
+	\begin{equation}
+		p_F = p_T + NF = -174 \text{dBm} + 20 \text{dBm} = -154 \text{dBm}
+	\end{equation}
+	Ora calcoliamo la potenza del rumore di fondo come:
+	\begin{equation}
+		P_F = p_F + RBW_{\text{dB}} = -111 \text{dBm}
+	\end{equation}
+	Ora dobbiamo sommare a tutte le nostre potenza il rumore di fondo:
+	\begin{itemize}
+		\item $P_{1, visualizzata} = P_1 + P_F = -84 \text{dBm} - 111 \text{dBm}$\\
+		Ragionando notiamo come ad una potenza stiamo aggiungendo un'altra potenza che però è di circa 1000 volte più piccola. Dunque $P_{1, visualizzata} \cong P_1$.
+		\item $P_{2, visualizzata} = P_2 + P_F = -110 \text{dBm} - 111 \text{dBm}$\\
+		Qui notiamo che invece le due potenze sono molto simili, quasi uguali. In dB sappiamo che sommando due valori uguali è come se, sulla scala lineare, stessimo raddoppiando il valore. Dunque è come se a quei dB sommassimo 3dB, ovvero moltiplicassimo di un fattore 2. Dunque $P_{2, visualizzata} = -107 \text{dBm}$.
+	\end{itemize}
+	\paragraph*{Valore di misura restituito da un voltmetro}
+	Può accadere che ci venga richiesto di dire quale sia il valore restituto da un voltmetro data una $V_x$ di ingresso già nota.\\
+	In questo caso troviamo prima i livelli corrispondenti di $V_x$, dividendo quest'ultima per la risoluzione dello strumento e approssimiamo il valore all'intero inferiore.
+	\begin{equation}
+		N_{L} = \frac{V_x}{\Delta V} \cong 97,6453 \approx 97 = N_{L(INT)}
+	\end{equation}
+	Una volta che abbiamo i conteggi interi rifacciamo l'operazione precedente al contrario
+	\begin{equation}
+		V_{x,MIS} = N_{L(INT)} \times \Delta V
+	\end{equation}
+	\paragraph*{Trasformazione in dBm di una misura con relativa incertezza}
+	Quando vogliamo scrivere in dBm un valore e a sua incertezza dobbiamo ricordarci che la scala non è lineare. Questo non è un problema per il valore della misura, ma per la sua incertezza sì. Dunque dovremmo prendere singolarmente il valore di potenza superiore e inferiore e fare singolarmente il calcolo per portarlo in scals logaritmica.
+	\paragraph*{Trasformazione da dBc a dBm}
+	Supponiamo di avere un valore di potenza $P = 5mW$ a cui altre potenze (in dBc) sono riferite: prendiamo, per esempio, $P_{SB} = -40 \text{dBc}$.\\
+	Innanziatutto calcoliamo $P_{C,\text{(dBm)}}$
+	\begin{equation}
+		P_C = 5 mW = 7 \text{dBm}
+	\end{equation}
+	E poi il corrispettivo valore di $P_{SB}$ in dBm
+	\begin{equation}
+		P_{SB}/P_C = -40 \text{dBc} \to P_{SB} = P_C - 40 \text{dB} = 33 \text{dBm}
+	\end{equation}
+\end{document}
